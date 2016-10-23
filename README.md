@@ -31,3 +31,4 @@ Import code
 
 ##Links de sites e plugins usados
 (https://getmdl.io/)
+(http://www.gieson.com/Library/projects/utilities/icon_slayer/)
