@@ -43,21 +43,21 @@ angular.module('app.routes', [])
             }
         }
     })
-    .state('app.dashStudent', {
-        url: '/dashStudent',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/dash-student.html',
-                controller: 'dashStudentCtrl'
-            }
-        }
-    })
     .state('app.map', {
         url: '/map',
         views: {
             'menuContent': {
                 templateUrl: 'templates/map.html',
                 controller: 'MapCtrl'
+            }
+        }
+    })
+    .state('app.map2', {
+        url: '/map2',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/map2.html',
+                controller: 'Map2Ctrl'
             }
         }
     })
@@ -79,7 +79,25 @@ angular.module('app.routes', [])
             }
         }
     })
+    .state('app.dashStudent', {
+        url: '/dashStudent',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/dash-student.html',
+                controller: 'dashStudentCtrl'
+            }
+        }
+    })
+    .state('app.listaAlunos', {
+        url: '/listaAlunos',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/listaAlunos.html'//,
+                //controller: 'listaAlunosCtrl'
+            }
+        }
+    })
     ;
     // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/app/home');
+    $urlRouterProvider.otherwise('/app/login');
     });

@@ -4,36 +4,22 @@ var app = angular.module('app.controllers', ['ionic', 'ngCordova']) //, 'ngMessa
 =            Controller for App            =
 ==========================================*/
 app.controller('AppCtrl', function($scope, $timeout, $stateParams) {
-    $scope.title = 'Pagina';
+
 })
 
 /*===========================================
 =            Controller for Home            =
 ===========================================*/
 app.controller('HomeCtrl', function($scope, $stateParams) {
-
+    $scope.title = 'QR School';
 })
 
 /*=============================================================
 =            Controller for Device Especifications            =
 =============================================================*/
 app.controller('deviceCtrl', function($scope, $cordovaDevice) {
-        //document.addEventListener("deviceready", function() {
 
-        /*var device = $cordovaDevice.getDevice();
-
-        var cordova = $cordovaDevice.getCordova();
-
-        var model = $cordovaDevice.getModel();
-
-        var platform = $cordovaDevice.getPlatform();
-
-        var uuid = $cordovaDevice.getUUID();
-
-        var version = $cordovaDevice.getVersion();*/
-        //}
-        //}, false);
-
+        $scope.title = 'Dispositivo';
         var divice = $cordovaDevice.getDevice();
         $scope.cordova = $cordovaDevice.getCordova();
         $scope.model = $cordovaDevice.getModel();
@@ -55,9 +41,10 @@ app.controller('SearchCtrl', function($scope, $stateParams) {})
     =            Controller for Scan of the qr code vs alunos            =
     ====================================================================*/
 app.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $cordovaDialogs, $cordovaVibration) {
+    $scope.title = 'Confirmar Presença';
     $scope.scanBarcode = function() {
         $cordovaBarcodeScanner.scan().then(function(imageData) {
-            //alert(imageData.text);
+            alert(imageData.text);
             console.log("Barcode Format -> " + imageData.format);
             console.log("Cancelled -> " + imageData.cancelled);
             $cordovaVibration.vibrate(200);
@@ -132,8 +119,8 @@ app.controller('LoginCtrl', function($scope, $stateParams) { //, $timeout, $ioni
             var a = $('input');
 
             if (a[0].value == '1234' && a[1].value == '1234') {
-                //$scope.go("/app/home");
-                alert('Entrou', '', 'Sucesso', 'Ok');
+                $scope.go("/app/home");
+                //alert('Entrou', '', 'Sucesso', 'Ok');
             }
             if (a[0].value == '' || a[1].value == '') {
                 alert('Os campos devem ser preenchidos', '', 'Erro', 'Tentar novamente');
@@ -145,10 +132,6 @@ app.controller('LoginCtrl', function($scope, $stateParams) { //, $timeout, $ioni
             $scope.go("/app/cadastro");
             //$scope.window.location.href = 'app/cadastro.html';
         };
-
-        $('#textarea1').val('New Text');
-        $('#textarea1').trigger('autoresize');
-
         //$scope.go("/app/cadastro");
         //$scope.window.location.href = 'app/cadastro.html';
     })
@@ -268,57 +251,111 @@ app.controller('RightCtrl', function($scope, $timeout, $mdSidenav, $log) {
 =            Controller for map            =
 ==========================================*/
 app.controller('MapCtrl', function($scope, $ionicLoading, $cordovaGeolocation) {
-    $scope.mapCreated = function(map) {
-        $scope.map = map;
-    };
+        $scope.title = 'Localização';
 
-    $scope.centerOnMe = function() {
-        console.log("Centering");
-        if (!$scope.map) {
-            return;
-        }
+        $scope.mapCreated = function(map) {
+            $scope.map = map;
+            //$scope.centerOnMe();
+        };
 
-        $scope.loading = $ionicLoading.show({
-            content: 'Getting current location...',
-            showBackdrop: false
+        $scope.centerOnMe = function() {
+            console.log("Centralizando o mapa");
+            if (!$scope.map) {
+                return;
+            }
+
+            navigator.geolocation.getCurrentPosition(function(pos) {
+                console.log('Got pos', pos);
+                $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
+            }, function(error) {
+                alert('Unable to get location: ' + error.message);
+            });
+        };
+})
+    /*Mapa 2*/
+app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
+        $scope.title = 'Localização2';
+
+        var posOptions = {
+            timeout: 10000,
+            enableHighAccuracy: false
+        };
+        $cordovaGeolocation
+            .getCurrentPosition(posOptions)
+            .then(function(position) {
+                var lat = position.coords.latitude
+                var long = position.coords.longitude
+            }, function(err) {
+                // error
+            });
+
+
+        var watchOptions = {
+            timeout: 3000,
+            enableHighAccuracy: false // may cause errors if true
+        };
+
+        var watch = $cordovaGeolocation.watchPosition(watchOptions);
+        watch.then(
+            null,
+            function(err) {
+                // error
+            },
+            function(position) {
+                var lat = position.coords.latitude
+                var long = position.coords.longitude
+            });
+
+
+        watch.clearWatch();
+        // OR
+        $cordovaGeolocation.clearWatch(watch)
+            .then(function(result) {
+                // success
+            }, function(error) {
+                // error
+            });
+    })
+    /*===== Mapa 3 ======*/
+app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
+    $scope.title = 'Localização2';
+
+    $scope.initMap = function() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 8,
+            center: {
+                lat: -34.397,
+                lng: 150.644
+            }
         });
+    });
+})
 
-        navigator.geolocation.getCurrentPosition(function(pos) {
-            console.log('Got pos', pos);
-            $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
-            $scope.loading.hide();
-        }, function(error) {
-            alert('Unable to get location: ' + error.message);
-        });
-    };
-});
+
+
 /*=====  End of Controller for map  ======*/
+
+
 
 /*----------  Controller for connectionCtrl  ----------*/
 app.controller('connectionCtrl', function($scope, $log, $stateParams, $cordovaNetwork, $rootScope) {
 
-    //======ngCordova events========//
-    document.addEventListener("deviceready", function() {
+    var type = $cordovaNetwork.getNetwork()
 
-        var type = $cordovaNetwork.getNetwork()
+    var isOnline = $cordovaNetwork.isOnline()
 
-        var isOnline = $cordovaNetwork.isOnline()
-
-        var isOffline = $cordovaNetwork.isOffline()
+    var isOffline = $cordovaNetwork.isOffline()
 
 
-        // listen for Online event
-        $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
-            var onlineState = networkState;
-        })
+    // listen for Online event
+    $rootScope.$on('$cordovaNetwork:online', function(event, networkState) {
+        var onlineState = networkState;
+    })
 
-        // listen for Offline event
-        $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
-            var offlineState = networkState;
-        })
-
-    }, false);
-    //=======end ngCordova events===========//
+    // listen for Offline event
+    $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
+        var offlineState = networkState;
+    })
 
     /*$scope.checkConnection = function($scope) {
             var netWorkState = navigator.connection.type;
