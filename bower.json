@@ -12,7 +12,7 @@
     "jQuery": "^3.1.1",
     "materialize": "^0.97.7",
     "angular-material": "^1.1.1",
-    "ngCordova": "^0.1.27-alpha"
+    "material-design-lite": "^1.2.1"
   },
   "authors": [
     "leonebruno <leone.analistadesistemas@outlook.com.br>"
