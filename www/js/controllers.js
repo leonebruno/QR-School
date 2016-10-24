@@ -1,4 +1,4 @@
-var app = angular.module('app.controllers', ['ionic', 'ngCordova']) //, 'ngMessages', 'material.svgAssetsCache', 'ionic', '$scope', '$stateParams', 'ngMaterial'
+var app = angular.module('app.controllers', ['ionic', 'ngCordova', 'ngMaterial']) //, 'ja.qr', 'ngMessages', ''material.svgAssetsCache', '$scope', '$stateParams', , 
 
 /*==========================================
 =            Controller for App            =
@@ -19,14 +19,18 @@ app.controller('HomeCtrl', function($scope, $stateParams) {
 =============================================================*/
 app.controller('deviceCtrl', function($scope, $cordovaDevice) {
 
-        $scope.title = 'Dispositivo';
-        var divice = $cordovaDevice.getDevice();
-        $scope.cordova = $cordovaDevice.getCordova();
-        $scope.model = $cordovaDevice.getModel();
-        $scope.fabricante = device.manufacture;
-        $scope.platform = $cordovaDevice.getPlatform();
-        $scope.uuid = $cordovaDevice.getUUID();
-        $scope.version = $cordovaDevice.getVersion();
+        $scope.title = 'Informações do Dispositivo';
+
+        //$scope.getDevice = function(){
+			//var device = $cordovaDevice.getDevice();
+			$scope.cordova = $cordovaDevice.getCordova();
+			$scope.m = $cordovaDevice.getModel();
+			$scope.f = device.manufacture;
+			$scope.p = $cordovaDevice.getPlatform();
+			$scope.uuid = $cordovaDevice.getUUID();
+			$scope.v = $cordovaDevice.getVersion();
+		//}
+		
     })
     /*=============================================
     =            Controller for signup            =
@@ -273,7 +277,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $cordovaGeolocation) {
         };
 })
     /*Mapa 2*/
-app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
+/*app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
         $scope.title = 'Localização2';
 
         var posOptions = {
@@ -315,9 +319,9 @@ app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) 
             }, function(error) {
                 // error
             });
-    })
+    })*/
     /*===== Mapa 3 ======*/
-app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
+/*app.controller('Map3Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) {
     $scope.title = 'Localização2';
 
     $scope.initMap = function() {
@@ -328,8 +332,8 @@ app.controller('Map2Ctrl', function($scope, $ionicLoading, $cordovaGeolocation) 
                 lng: 150.644
             }
         });
-    });
-})
+    }
+})*/
 
 
 
