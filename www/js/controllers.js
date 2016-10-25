@@ -39,7 +39,7 @@ app.controller('deviceCtrl', function($scope, $cordovaDevice) {
             $scope.platform = platform;
             $scope.uuid = uuid;
             $scope.version = version;
-            $scope.fabricante = Bruno Leone;
+            $scope.fabricante = 'Bruno Leone';
 
         //}, false);
 
