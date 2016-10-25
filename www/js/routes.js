@@ -52,15 +52,6 @@ angular.module('app.routes', [])
             }
         }
     })
-    .state('app.map2', {
-        url: '/map2',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/map2.html',
-                controller: 'Map2Ctrl'
-            }
-        }
-    })
     .state('app.device', {
         url: '/device',
         views: {
@@ -76,15 +67,6 @@ angular.module('app.routes', [])
             'menuContent': {
                 templateUrl: 'templates/network.html',
                 controller: 'networkCtrl'
-            }
-        }
-    })
-    .state('app.dashStudent', {
-        url: '/dashStudent',
-        views: {
-            'menuContent': {
-                templateUrl: 'templates/dash-student.html',
-                controller: 'dashStudentCtrl'
             }
         }
     })
