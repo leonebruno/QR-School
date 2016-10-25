@@ -1,7 +1,7 @@
 {
-  "name": "qr-chamada",
-  "version": "0.0.1",
-  "description": "qr-chamada: An Ionic project",
+  "name": "qr-school",
+  "version": "1.1.1",
+  "description": "qr-school: An Ionic project",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^2.0.4",
@@ -20,9 +20,7 @@
     "cordova-plugin-whitelist",
     "cordova-plugin-splashscreen",
     "cordova-plugin-statusbar",
-    "ionic-plugin-keyboard",
-    "phonegap-plugin-barcodescanner",
-    "cordova-plugin-dialogs"
+    "ionic-plugin-keyboard"
   ],
   "cordovaPlatforms": []
 }

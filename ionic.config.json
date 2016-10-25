@@ -1,12 +1,4 @@
 {
-  "name": "qr-chamada",
-  "app_id": "33381ef2",
-  "gulpStartupTasks": [
-    "sass",
-    "watch"
-  ],
-  "watchPatterns": [
-    "www/**/*",
-    "!www/lib/**/*"
-  ]
+  "name": "qr-school",
+  "app_id": ""
 }
