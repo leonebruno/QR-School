@@ -1,0 +1,55 @@
+<!-- Simple list -->
+       <style>
+        #contenter{
+          height: 250px;
+          background-color: rgb(244,67,54);
+          padding: 0px;
+          margin: -5px;
+        }
+        .list-plus{
+          border-bottom: solid rgba(158,158,158,0.5) 1px;
+          padding-bottom: 20px;
+        }
+        #imagem{
+          float: center;
+        }
+      </style>
+<ion-view title="Abrir Aula">
+
+	<!-- Always shows a header, even in smaller screens. -->
+	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+		<header class="mdl-layout__header">
+			<div class="mdl-layout__header-row">
+				<!-- Title -->
+				<span class="mdl-layout-title">{{title}}</span>
+				<!-- Add spacer, to align navigation to the right -->
+				<div class="mdl-layout-spacer"></div>
+				<!-- Navigation. We hide it in small screens. -->
+			</div>
+		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">{{title}}</span>
+		</div>
+		<main class="mdl-layout__content">
+			<div class="page-content">
+				<!-- Your content goes here -->
+				<div class="row">
+					<div class="col s6" id="contenter">
+						<div id="imagem" class="col s1 offset-s3">
+							<!-- <img src="../www/img/img-qr-code.jpg" alt=""> -->
+						</div>               
+					</div>
+				</div>
+				<div layout="row">
+					<div layout="col s6">
+						<div class="row row-bottom" id="btn-scan">
+							<button class="waves-effect waves-light btn col s12 red" ng-click="scanBarcode();" >
+								Ler o codigo de presença
+							</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</main>
+	</div>
+</ion-view>
