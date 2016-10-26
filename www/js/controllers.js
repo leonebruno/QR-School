@@ -21,25 +21,28 @@ app.controller('deviceCtrl', function($scope, $cordovaDevice) {
 
         //document.addEventListener("deviceready", function() {
 
-            var device = $cordovaDevice.getDevice();
+        /*$scope.device = $cordovaDevice.getDevice();
 
-            var cordova = $cordovaDevice.getCordova();
+        $scope.cordova = $cordovaDevice.getCordova();
 
-            var model = $cordovaDevice.getModel();
+        $scope.model = $cordovaDevice.getModel();
 
-            var platform = $cordovaDevice.getPlatform();
+        $scope.platform = $cordovaDevice.getPlatform();
 
-            var uuid = $cordovaDevice.getUUID();
+        $scope.uuid = $cordovaDevice.getUUID();
 
-            var version = $cordovaDevice.getVersion();
+        $scope.version = $cordovaDevice.getVersion();
 
-            $scope.device = device;
-            $scope.cordova = cordova;
-            $scope.model = model;
-            $scope.platform = platform;
-            $scope.uuid = uuid;
-            $scope.version = version;
-            $scope.fabricante = 'Bruno Leone';
+        $scope.fabricante = 'Bruno Leone';*/
+
+        $scope.device = device.cordova;
+        $scope.model = device.model;
+        $scope.platform = device.platform;
+        $scope.uuid = device.uuid;
+        $scope.version = device.version;
+        $scope.manufacturer = device.manufacturer;
+        $scope.isVirtual = device.isVirtual;
+        $scope.serial = device.serial;
 
         //}, false);
 
@@ -70,14 +73,14 @@ app.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $cordovaDial
         });*/
         cordova.plugins.barcodeScanner.scan(
             function(result) {
-                alert("We got a barcode\n" +
+                navigator.notification.alert("We got a barcode\n" +
                     "Result: " + result.text + "\n" +
                     "Format: " + result.format + "\n" +
-                    "Cancelled: " + result.cancelled);
+                    "Cancelled: " + result.cancelled, null, '', 'Ok');
                 $cordovaVibration.vibrate(200);
             },
             function(error) {
-                alert("Scanning failed: " + error);
+                navigator.notification.alert("Scanning failed: " + error, null, 'Error', 'Ok');
             }, {
                 "preferFrontCamera": false, // iOS and Android
                 "showFlipCameraButton": true, // iOS and Android
@@ -98,7 +101,7 @@ app.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $cordovaDial
     }, function(error) {
     alert(console.log("An error happened -> " + error));
     });
-    };*/
+};*/
     // NOTE: encoding not functioning yet
     /*$cordovaBarcodeScanner
     .encode(BarcodeScanner.Encode.TEXT_TYPE, "http://www.nytimes.com")
@@ -107,7 +110,7 @@ app.controller('ScanCtrl', function($scope, $cordovaBarcodeScanner, $cordovaDial
     }, function(error) {
     // An error occurred
     });
-    }, false);*/
+}, false);*/
 })
 
 /*===============================================
@@ -140,6 +143,8 @@ app.controller('dashStudentCtrl', function($scope, $stateParams) {
 ============================================*/
 app.controller('LoginCtrl', function($scope, $stateParams) { //, $timeout, $ionicMaterialMotion, $ionicLoading, $cordovaDialoge
 
+        
+        
         $scope.logar = function($scope) {
 
             var a = $('input');
@@ -203,7 +208,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $cordovaGeolocation) {
                 console.log('Got pos', pos);
                 $scope.map.setCenter(new google.maps.LatLng(pos.coords.latitude, pos.coords.longitude));
             }, function(error) {
-                alert('Unable to get location: ' + error.message);
+                navigator.notificator.alert('Unable to get location: ' + error.message);
             });
         };
     })
@@ -214,7 +219,7 @@ app.controller('MapCtrl', function($scope, $ionicLoading, $cordovaGeolocation) {
 /*----------  Controller for connectionCtrl  ----------*/
 app.controller('connectionCtrl', function($scope, $log, $stateParams, $cordovaNetwork, $rootScope) {
 
-        var type = $cordovaNetwork.getNetwork()
+        /*var type = $cordovaNetwork.getNetwork()
 
         var isOnline = $cordovaNetwork.isOnline()
 
@@ -229,47 +234,46 @@ app.controller('connectionCtrl', function($scope, $log, $stateParams, $cordovaNe
         // listen for Offline event
         $rootScope.$on('$cordovaNetwork:offline', function(event, networkState) {
             var offlineState = networkState;
-        })
+        })*/
 
-        /*$scope.checkConnection = function($scope) {
-        var netWorkState = navigator.connection.type;
+        $scope.checkConnection = function($scope) {
+            var netWorkState = navigator.connection.type;
 
-        var states = {};
+            var states = {};
 
-        states[Connection.UNKNOWN] = 'Online';
-        states[Connection.ETHERNET] = 'Ethernet';
-        states[Connection.WIFI] = 'WiFi';
-        states[Connection.CELL_2G] = '2G';
-        states[Connection.CELL_3G] = '3G';
-        states[Connection.CELL_4G] = '4G';
-        states[Connection.CELL] = 'Genérica';
-        states[Connection.NONE] = 'Offline';
+            states[Connection.UNKNOWN] = 'Online';
+            states[Connection.ETHERNET] = 'Ethernet';
+            states[Connection.WIFI] = 'WiFi';
+            states[Connection.CELL_2G] = '2G';
+            states[Connection.CELL_3G] = '3G';
+            states[Connection.CELL_4G] = '4G';
+            states[Connection.CELL] = 'Genérica';
+            states[Connection.NONE] = 'Offline';
 
-        //alert('Conexão: ' + states[netWorkState], '', '', 'OK');
+            navigator.notificator.alert('Conexão: ' + states[netWorkState], onOnline(), '', 'OK');
         }
-        //checkConnection();
 
         //caso offline
-        //--document.addEventListener("offline", onOffline, false);
+        document.addEventListener("offline", onOffline, false);
 
         function onOffline() {
-        // Handle the offline event 
-        console.log("lost connection");
+            // Handle the offline event 
+            console.log("lost connection");
         }
 
         //caso online
-        //--document.addEventListener("online", onOnline, false);
+        document.addEventListener("online", onOnline, false);
 
         function onOnline() {
-        // Handle the online event 
-        var networkState = navigator.connection.type;
+            // Handle the online event 
+            var networkState = navigator.connection.type;
 
-        if (networkState !== Connection.NONE) {
-        if (dataFileEntry) {
-        tryToUploadFile();
+            if (networkState !== Connection.NONE) {
+                if (dataFileEntry) {
+                    tryToUploadFile();
+                }
+            }
+            display('Connection type: ' + networkState);
         }
-        }
-        display('Connection type: ' + networkState);
-        }*/
     })
     /*---------- End for Controller for  ----------*/
