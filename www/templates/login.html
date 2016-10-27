@@ -4,68 +4,72 @@
 		color: #F44336;
 		font-weight: bold;
 		padding: 5px; }
-	</style>
-	<ion-view view-title="Entrar">
-		<ion-content scroll="false">
-			<div class="row" id="painel-login">
-				<div class="row">
-				<form class="col s6" name="form-login" ng-cloak="">
-						<div class="row">
-							<div class="col s6">
-								<!--<p>Acessar como: <span class="radioValue">{{ user }}</span> </p>-->
-							</div>
-						</div>
-						<div class="row">
-							<div class="input-field">
-								<md-radio-group ng-model="user">
-									<md-radio-button value="Aluno" class="col s7 md-primary"> Aluno </md-radio-button>
-									<md-radio-button value="Professor" class="col s4">Professor</md-radio-button>
-								</md-radio-group>
-							</div>
-						</div>
-						<div ng-switch="user">
-							<div ng-switch-when="Aluno">
-								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" id="ipt-ra" class="validate" ng-model="login.ra">
-										<label for="ra">RA</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input id="password" type="password" class="validate" ng-model="login.senha">
-										<label for="password">Senha</label>
-									</div>
-								</div>
-							</div>
-							<div ng-switch-when="Professor">
-								<div class="row">
-									<div class="input-field col s6">
-										<input type="text" id="ipt-ra" class="validate" ng-model="login.nome">
-										<label for="ra">Nome</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input id="password" type="password" class="validate" ng-model="login.materia">
-										<label for="password">Matéria</label>
-									</div>
-								</div>
-								<div class="row">
-									<div class="input-field col s6">
-										<input id="password" type="password" class="validate" ng-model="login.senha">
-										<label for="password">Senha</label>
-									</div>
-								</div>
-							</div>
-						</div>
-						<div class="row" class="area-buttom s6">
-							<a class="waves-effect waves-light btn col s12 red" [ng-click="logar()"] [on-hold="onHold()"] [ng-click="auth()]" href="#/app/home">Entrar</a>
-						</div>
-					</form>
+</style>
+<ion-view view-title="Entrar">
+<ion-content scroll="false">
+<div class="row" id="painel-login">
+	<div class="row">
+		<form class="col s6" name="form-login" ng-cloak="">
+			<div class="row">
+				<div class="col s6">
+					<!--<p>Acessar como: <span class="radioValue">{{ user }}</span> </p>-->
 				</div>
+			</div>
+			<div class="row">
+				<div class="input-field">
+					<md-radio-group ng-model="user">
+					<div class="">
+						<md-radio-button value="Aluno" class="md-primary md-checked"> Aluno </md-radio-button>
+					</div>
+					<div class="offset-s4">
+						<md-radio-button value="Professor">Professor</md-radio-button>
+					</div>
+					</md-radio-group>
+				</div>
+			</div>
+			<div ng-switch="user">
+				<div ng-switch-when="Aluno">
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" id="ipt-ra" class="validate" ng-model="login.ra">
+							<label for="ra">RA</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input id="password" type="password" class="validate" ng-model="login.senha">
+							<label for="password">Senha</label>
+						</div>
+					</div>
+				</div>
+				<div ng-switch-when="Professor">
+					<div class="row">
+						<div class="input-field col s6">
+							<input type="text" id="ipt-ra" class="validate" ng-model="login.nome">
+							<label for="ra">Nome</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input id="password" type="password" class="validate" ng-model="login.materia">
+							<label for="password">Matéria</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s6">
+							<input id="password" type="password" class="validate" ng-model="login.senha">
+							<label for="password">Senha</label>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="row" class="area-buttom s6">
+				<a class="waves-effect waves-light btn col s12 red" [ng-click="logar()"] [on-hold="onHold()"] [ng-click="auth()]" href="#/app/home">Entrar</a>
+			</div>
+		</form>
+	</div>
 	<!--<div class="row" style="">
-		<div class="col s4 offset-s4">QR School V0.0.1</div>
+				<div class="col s4 offset-s4">QR School V0.0.1</div>
 	</div>-->
 	<div class="row" id="copy-fixed">
 		<div class="h5 col s2 offset-s4">QRSchool 2016</div>
