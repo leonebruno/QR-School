@@ -49,8 +49,8 @@ app.directive('map', function() {
     function initMap() {
         var map = new google.maps.Map(document.getElementById('map'), {
             center: {
-                lat: -34.397,
-                lng: 150.644
+                lat: -19.975748,
+                lng: -44.0224787
             },
             zoom: 6
         });

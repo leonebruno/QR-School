@@ -70,12 +70,12 @@ angular.module('app.routes', [])
             }
         }
     })
-    .state('app.listaAlunos', {
-        url: '/listaAlunos',
+    .state('app.list-aulas', {
+        url: '/list-aulas',
         views: {
             'menuContent': {
-                templateUrl: 'templates/listaAlunos.html'//,
-                //controller: 'listaAlunosCtrl'
+                templateUrl: 'templates/list-aulas.html',
+                controller: 'ListAulasCtrl'
             }
         }
     })

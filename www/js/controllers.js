@@ -12,6 +12,27 @@ app.controller('HomeCtrl', function($scope, $stateParams) {
     $scope.title = 'QR School';
 })
 
+app.controller('ListAulasCtrl', function($scope, $stateParams, $http){
+    
+    $scope.loadAulas = function(){
+
+        $scope.aulas = [];
+
+        var ajaxRequest = $http.get("http://127.0.0.1/qr-school-server/getaulas.php");
+
+        ajaxRequest.success(function(data, status, headers, config){
+            $scope.aulas = data;
+            alert("Aulas Loaded!");
+        });
+
+        ajaxRequest.error(function(data, status, headers, config) {
+            alert("AJAX Failed!");
+        });
+
+    }
+
+})
+
 /*=============================================================
 =            Controller for Device Especifications            =
 =============================================================*/
